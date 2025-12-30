@@ -4,16 +4,22 @@ const TodoList = (props) => {
         tasks = [],
         onDeleteTask,
         onToggleTaskComplete,
+        filtredTasks,
     } = props
-    const hasTasks = true
+    const hasTasks = tasks.length > 0
+    const isEmptyFilteredTasks = filtredTasks?.length === 0
 
     if (!hasTasks) {
-        return <div className="todo__empty-message"></div>
+        return <div className="todo__empty-message">There are no tasks yet</div>
+    }
+
+    if (hasTasks && isEmptyFilteredTasks) {
+        return <div className="todo__empty-message">Task not found</div>
     }
 
     return (
       <ul className="todo__list">
-        {tasks.map((task) => (
+        {(filtredTasks ?? tasks).map((task) => (
             <TodoItem
                 onDeleteTask={onDeleteTask}
                 onToggleTaskComplete={onToggleTaskComplete}
