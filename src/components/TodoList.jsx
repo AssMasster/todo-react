@@ -2,6 +2,8 @@ import TodoItem from "./TodoItem"
 const TodoList = (props) => {
     const {
         tasks = [],
+        onDeleteTask,
+        onToggleTaskComplete,
     } = props
     const hasTasks = true
 
@@ -13,6 +15,8 @@ const TodoList = (props) => {
       <ul className="todo__list">
         {tasks.map((task) => (
             <TodoItem
+                onDeleteTask={onDeleteTask}
+                onToggleTaskComplete={onToggleTaskComplete}
                 className='todo__item'
                 key={task.id}
                 {...task}

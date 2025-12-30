@@ -2,7 +2,7 @@ const Button = (props) => {
     const {
         className = '',
         type = 'button',
-        children
+        children,
     } = props
     return (
         <button 

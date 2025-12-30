@@ -3,11 +3,14 @@ const TodoItem = (props) => {
         id,
         title,
         isDone,
-        className = ''
+        className = '',
+        onDeleteTask,
+        onToggleTaskComplete,
     } = props
     return (
         <li className={`todo-item ${className}`}>
           <input
+            onChange={(event) => {onToggleTaskComplete(id, event.target.checked)}}
             className="todo-item__checkbox"
             id={id}
             type="checkbox"
@@ -23,6 +26,7 @@ const TodoItem = (props) => {
             className="todo-item__delete-button"
             aria-label="Delete"
             title="Delete"
+            onClick={() => onDeleteTask(id)}
           >
             <svg
               width="20"
