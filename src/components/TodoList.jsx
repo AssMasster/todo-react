@@ -1,10 +1,13 @@
 import TodoItem from "./TodoItem"
+import { memo } from "react"
 const TodoList = (props) => {
     const {
         tasks = [],
         onDeleteTask,
         onToggleTaskComplete,
         filtredTasks,
+        firstIncompleteTaskRef,
+        firstIncompleteTaskId,
     } = props
     const hasTasks = tasks.length > 0
     const isEmptyFilteredTasks = filtredTasks?.length === 0
@@ -21,6 +24,7 @@ const TodoList = (props) => {
       <ul className="todo__list">
         {(filtredTasks ?? tasks).map((task) => (
             <TodoItem
+                ref={task.id === firstIncompleteTaskId ? firstIncompleteTaskRef : null}
                 onDeleteTask={onDeleteTask}
                 onToggleTaskComplete={onToggleTaskComplete}
                 className='todo__item'
@@ -32,4 +36,4 @@ const TodoList = (props) => {
     )
 }
 
-export default TodoList
+export default memo(TodoList)

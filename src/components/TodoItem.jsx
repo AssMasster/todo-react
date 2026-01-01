@@ -1,3 +1,4 @@
+import { memo } from "react"
 const TodoItem = (props) => {
     const {
         id,
@@ -6,9 +7,10 @@ const TodoItem = (props) => {
         className = '',
         onDeleteTask,
         onToggleTaskComplete,
+        ref,
     } = props
     return (
-        <li className={`todo-item ${className}`}>
+        <li ref={ref} className={`todo-item ${className}`}>
           <input
             onChange={(event) => {onToggleTaskComplete(id, event.target.checked)}}
             className="todo-item__checkbox"
@@ -48,4 +50,4 @@ const TodoItem = (props) => {
     )
 }
 
-export default TodoItem
+export default memo(TodoItem) 

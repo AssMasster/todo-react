@@ -6,6 +6,7 @@ const Field = (props) => {
         type = 'text',
         onInput,
         value,
+        ref
     } = props
     return (
         <div className = {`field ${className}`}>
@@ -16,6 +17,7 @@ const Field = (props) => {
             {label}
           </label>
           <input
+            ref={ref}
             className="field__input"
             id={id}
             placeholder=" "
