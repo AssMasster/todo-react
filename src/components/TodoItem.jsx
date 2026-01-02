@@ -1,18 +1,24 @@
-import { memo } from "react"
+import { memo, useContext } from "react"
+import { TasksContext } from "../context/TasksContext"
 const TodoItem = (props) => {
     const {
         id,
         title,
         isDone,
         className = '',
-        onDeleteTask,
-        onToggleTaskComplete,
-        ref,
     } = props
+
+    const {
+        firstIncompleteTaskRef,
+        firstIncompleteTaskId,
+        deleteTask,
+        toggleTaskComplete,
+    } = useContext(TasksContext)
+
     return (
-        <li ref={ref} className={`todo-item ${className}`}>
+        <li ref={id === firstIncompleteTaskId ? firstIncompleteTaskRef : null} className={`todo-item ${className}`}>
           <input
-            onChange={(event) => {onToggleTaskComplete(id, event.target.checked)}}
+            onChange={(event) => {toggleTaskComplete(id, event.target.checked)}}
             className="todo-item__checkbox"
             id={id}
             type="checkbox"
@@ -28,7 +34,7 @@ const TodoItem = (props) => {
             className="todo-item__delete-button"
             aria-label="Delete"
             title="Delete"
-            onClick={() => onDeleteTask(id)}
+            onClick={() => deleteTask(id)}
           >
             <svg
               width="20"
