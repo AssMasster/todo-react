@@ -9,6 +9,8 @@ const useTasks = () => {
         const [newTaskTitle, setNewTaskTitle] = useState('')
     
         const [searchQuery, setSearchQuery] = useState('')
+
+        const [disappearingTaskId, setDisappearingTaskId] = useState(null)
     
         const newTaskInputRef = useRef(null)
     
@@ -23,7 +25,11 @@ const useTasks = () => {
         const deleteTask = useCallback((taskId) => {
             tasksAPI.delete(taskId)
             .then(() => {
-                setTasks(tasks.filter(({id}) => id !== taskId))
+                setDisappearingTaskId(taskId)
+                setTimeout(() => {
+                    setTasks(tasks.filter(({id}) => id !== taskId))
+                    setDisappearingTaskId(null)
+                }, 400)
             })
         }, [tasks])
     
@@ -76,7 +82,8 @@ const useTasks = () => {
                 searchQuery,
                 setSearchQuery,
                 newTaskInputRef,
-                addTask
+                addTask,
+                disappearingTaskId
             }
         )
 }

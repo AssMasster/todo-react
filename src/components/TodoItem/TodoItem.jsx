@@ -15,10 +15,11 @@ const TodoItem = (props) => {
         firstIncompleteTaskId,
         deleteTask,
         toggleTaskComplete,
+        disappearingTaskId
     } = useContext(TasksContext)
 
     return (
-        <li ref={id === firstIncompleteTaskId ? firstIncompleteTaskRef : null} className={`${styles.item} ${className}`}>
+        <li ref={id === firstIncompleteTaskId ? firstIncompleteTaskRef : null} className={`${styles.item} ${className} ${disappearingTaskId === id ? styles.isDisappearing : ''}`}>
           <input
             onChange={(event) => {toggleTaskComplete(id, event.target.checked)}}
             className={styles.checkbox}

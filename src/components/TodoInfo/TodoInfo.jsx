@@ -11,7 +11,6 @@ const TodoInfo = (props) => {
     const done = useMemo(() => {
         return tasks.filter(({isDone}) => isDone).length
     }, [tasks])
-    console.log(styles.totalTasks)
     return (
         <div className={styles.info}>
             <div className={styles.totalTasks}>
