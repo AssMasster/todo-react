@@ -1,9 +1,9 @@
-import AddTaskForm from "../../features/add-task"
-import Button from "../../shared/ui/Button"
-import SearchTaskForm from "../../features/search-task"
-import TodoInfo from "../../features/stats"
-import  TodoList  from "../../entites/todo/ui/TodoList"
-import { TasksContext } from "../../entites/todo"
+import AddTaskForm from "@/features/add-task"
+import Button from "@/shared/ui/Button"
+import SearchTaskForm from "@/features/search-task"
+import TodoInfo from "@/features/stats"
+import  TodoList  from "@/entites/todo/ui/TodoList"
+import { TasksContext } from "@/entites/todo"
 import { useContext } from "react"
 import styles from './Todo.module.scss'
 const Todo = () => {

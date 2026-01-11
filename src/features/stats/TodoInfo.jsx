@@ -1,5 +1,5 @@
 import { memo, useContext, useMemo } from "react"
-import { TasksContext } from "../../entites/todo"
+import { TasksContext } from "@/entites/todo"
 const TodoInfo = (props) => {
     const { styles } = props
     const {
