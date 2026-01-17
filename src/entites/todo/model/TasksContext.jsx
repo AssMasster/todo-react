@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useMemo } from "react";
 import useTasks from "./useTasks";
 import useIncompleteTaskScroll from "./useIncompleteTaskScroll";
 
@@ -26,27 +26,40 @@ export const TasksProvider = (props) => {
         firstIncompleteTaskRef,
     } = useIncompleteTaskScroll(tasks)
 
+    const value = useMemo(() => ({
+        tasks,
+        filtredTasks,
+        deleteAllTasks,
+        deleteTask,
+        toggleTaskComplete,
+        newTaskTitle,
+        setNewTaskTitle,
+        searchQuery,
+        setSearchQuery,
+        newTaskInputRef,
+        addTask,
+        disappearingTaskId,
+        firstIncompleteTaskId,
+        firstIncompleteTaskRef,
+    }), [
+            tasks,
+            filtredTasks,
+            deleteAllTasks,
+            deleteTask,
+            toggleTaskComplete,
+            newTaskTitle,
+            setNewTaskTitle,
+            searchQuery,
+            setSearchQuery,
+            newTaskInputRef,
+            addTask,
+            disappearingTaskId,
+            firstIncompleteTaskId,
+            firstIncompleteTaskRef,
+    ])
+
     return (
-         <TasksContext.Provider
-            value={
-            {
-                tasks,
-                filtredTasks,
-                firstIncompleteTaskRef,
-                firstIncompleteTaskId,
-                deleteAllTasks,
-                deleteTask,
-                toggleTaskComplete,
-                newTaskTitle,
-                setNewTaskTitle,
-                searchQuery,
-                setSearchQuery,
-                newTaskInputRef,
-                addTask,
-                disappearingTaskId
-            }
-            }
-        >
+         <TasksContext.Provider value={value}>
             {children}
         </TasksContext.Provider>
     )
